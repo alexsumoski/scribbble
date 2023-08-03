@@ -27,3 +27,43 @@ export const createUserMutation = `
 		}
 	}
 `;
+
+export const createProjectMutation = `
+	mutation CreateProject($input: ProjectCreateInput!) {
+		projectCreate(input: $input) {
+			project {
+				id
+				title
+				description
+				createdBy {
+					email
+					name
+				}
+			}
+		}
+	}
+`;
+
+export const updateProjectMutation = `
+	mutation UpdateProject($id: ID!, $input: ProjectUpdateInput!) {
+		projectUpdate(by: { id: $id }, input: $input) {
+			project {
+				id
+				title
+				description
+				createdBy {
+					email
+					name
+				}
+			}
+		}
+	}
+`;
+
+export const deleteProjectMutation = `
+  mutation DeleteProject($id: ID!) {
+    projectDelete(by: { id: $id }) {
+      deletedId
+    }
+  }
+`;
