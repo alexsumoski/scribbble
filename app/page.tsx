@@ -1,5 +1,6 @@
 import { ProjectInterface } from "@/common.types";
 import Categories from "@/components/Categories";
+import Pagination from "@/components/Pagination";
 import ProjectCard from "@/components/ProjectCard";
 import { fetchAllProjects } from "@/lib/actions";
 
@@ -15,10 +16,31 @@ type ProjectSearch = {
   };
 };
 
-const Home = async () => {
-  const data = (await fetchAllProjects()) as ProjectSearch;
+type SearchParams = {
+  category?: string;
+  endCursor?: string;
+};
+
+type Props = {
+  searchParams: SearchParams;
+};
+
+// This variable may control dynamic behavior in the application.
+export const dynamic = "force-dynamic";
+
+// This variable may be used to handle dynamic parameters or data.
+export const dynamicParams = true;
+
+// This variable controls the incremental static regeneration interval.
+// Setting it to 0 means the page will be regenerated on every request.
+export const revalidate = 0;
+
+const Home = async ({ searchParams: { category, endCursor } }: Props) => {
+  const data = (await fetchAllProjects(category, endCursor)) as ProjectSearch;
 
   const projectsToDisplay = data?.projectSearch.edges || [];
+
+  const pagination = data?.projectSearch?.pageInfo;
 
   if (projectsToDisplay.length === 0) {
     return (
@@ -44,7 +66,12 @@ const Home = async () => {
           />
         ))}
       </section>
-      loadmore
+      <Pagination
+        startCursor={pagination.startCursor}
+        endCursor={pagination.endCursor}
+        hasPreviousPage={pagination.hasPreviousPage}
+        hasNextPage={pagination.hasNextPage}
+      />
     </section>
   );
 };
