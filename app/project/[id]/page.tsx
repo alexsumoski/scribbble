@@ -5,6 +5,8 @@ import Modal from "@/components/Modal";
 import { getProjectDetails } from "@/lib/actions";
 import { getCurrentUser } from "@/lib/session";
 import Link from "next/link";
+import RelatedProjects from "@/components/RelatedProjects";
+import ProjectActions from "@/components/ProjectActions";
 
 const Project = async ({ params: { id } }: { params: { id: string } }) => {
   const session = await getCurrentUser();
@@ -42,13 +44,19 @@ const Project = async ({ params: { id } }: { params: { id: string } }) => {
               <Image src="/dot.svg" width={4} height={4} alt="dot" />
               <Link
                 href={`/?category=${projectDetails.category}`}
-                className="text-[charcoal] font-semibold"
+                className="text-pink font-semibold"
               >
                 {projectDetails?.category}
               </Link>
             </div>
           </div>
         </div>
+
+        {session?.user?.email === projectDetails?.createdBy?.email && (
+          <div className="flex justify-end items-center gap-2">
+            <ProjectActions projectId={projectDetails.id} />
+          </div>
+        )}
       </section>
 
       <section className="mt-14">
@@ -71,7 +79,7 @@ const Project = async ({ params: { id } }: { params: { id: string } }) => {
             href={projectDetails?.githubUrl}
             target="_blank"
             rel="noreferrer"
-            className="flexCenter gap-2 tex-sm font-medium text-[#ea4c89]"
+            className="flexCenter gap-2 tex-sm font-medium text-pink"
           >
             🖥 <span className="underline">Github</span>
           </Link>
@@ -80,7 +88,7 @@ const Project = async ({ params: { id } }: { params: { id: string } }) => {
             href={projectDetails?.liveSiteUrl}
             target="_blank"
             rel="noreferrer"
-            className="flexCenter gap-2 tex-sm font-medium text-"
+            className="flexCenter gap-2 tex-sm font-medium text-pink"
           >
             🚀 <span className="underline">Live Site</span>
           </Link>
@@ -100,6 +108,11 @@ const Project = async ({ params: { id } }: { params: { id: string } }) => {
         </Link>
         <span className="w-full h-0.5 bg-light-white-200" />
       </section>
+
+      <RelatedProjects
+        userId={projectDetails?.createdBy?.id}
+        projectId={projectDetails?.id}
+      />
     </Modal>
   );
 };
