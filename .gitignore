@@ -18,7 +18,6 @@
 # misc
 .DS_Store
 *.pem
-.env
 
 # debug
 npm-debug.log*
@@ -27,7 +26,8 @@ yarn-error.log*
 
 # local env files
 .env*.local
-grafbase/.env
+
+.env
 
 # vercel
 .vercel
@@ -35,3 +35,6 @@ grafbase/.env
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# vscode
+.vscode
