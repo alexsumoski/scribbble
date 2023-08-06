@@ -4,7 +4,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 
 export const metadata = {
-  title: "Flexibble",
+  title: "Scribbble",
   description: "Showcase and discover remarkable developer projects",
 };
 

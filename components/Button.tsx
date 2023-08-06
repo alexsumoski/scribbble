@@ -28,7 +28,7 @@ const Button = ({
     className={`flexCenter gap-3 px-4 py-3 
         ${textColor ? textColor : "text-white"} 
         ${
-          submitting ? "bg-black/50" : bgColor ? bgColor : "bg-primary-purple"
+          submitting ? "bg-black/50" : bgColor ? bgColor : "bg-dark"
         } rounded-xl text-sm font-medium max-md:w-full`}
     onClick={handleClick}
   >
