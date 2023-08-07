@@ -1,5 +1,5 @@
 import { ProjectForm } from "@/common.types";
-import { createProjectMutation, createUserMutation, deleteProjectMutation, getProjectByIdQuery, getProjectsOfUserQuery, getUserQuery, projectsQuery, updateProjectMutation } from "@/graphql";
+import { createProjectMutation, createUserMutation, deleteProjectMutation, getProjectByIdQuery, getProjectsOfUserQuery, getUserQuery, projectsQuery, projectsQueryNoCategory, updateProjectMutation } from "@/graphql";
 import { GraphQLClient } from "graphql-request";
 
 const isProduction = process.env.NODE_ENV === "production";
@@ -111,18 +111,14 @@ export const getUserProjects = async (id: string, last?: number) => {
     return makeGraphQLRequest(getProjectsOfUserQuery, { id, last })
 }
 
-export const fetchAllProjects = async (
-    category?: string | null,
-    endCursor?: string | null
-  ) => {
+export const fetchAllProjects = async (category?: string | null, endCursor?: string | null) => {
     client.setHeader('x-api-key', apiKey);
+    
+    const query = category ? projectsQuery : projectsQueryNoCategory;
+    
+    return makeGraphQLRequest(query, { category, endCursor });
+  }
   
-    // Remove the category property if it is null or undefined
-    const variables = category ? { category, endCursor } : { endCursor };
-  
-    // Use the updated variables object in the GraphQL request
-    return makeGraphQLRequest(projectsQuery, variables);
-  };
   
 
 export const fetchToken = async () => {
