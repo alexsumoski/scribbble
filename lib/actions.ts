@@ -111,11 +111,19 @@ export const getUserProjects = async (id: string, last?: number) => {
     return makeGraphQLRequest(getProjectsOfUserQuery, { id, last })
 }
 
-export const fetchAllProjects = async (category?: string | null, endCursor?: string | null) => {
+export const fetchAllProjects = async (
+    category?: string | null,
+    endCursor?: string | null
+  ) => {
     client.setHeader('x-api-key', apiKey);
-
-    return makeGraphQLRequest(projectsQuery, { category, endCursor });
-}
+  
+    // Remove the category property if it is null or undefined
+    const variables = category ? { category, endCursor } : { endCursor };
+  
+    // Use the updated variables object in the GraphQL request
+    return makeGraphQLRequest(projectsQuery, variables);
+  };
+  
 
 export const fetchToken = async () => {
   try {

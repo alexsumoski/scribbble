@@ -1,30 +1,27 @@
 export const NavLinks = [
+    { href: '/', key: 'Find talent', text: 'Find talent' },
+    { href: '/', key: 'For designers', text: 'For designers' },
     { href: '/', key: 'Inspiration', text: 'Inspiration' },
-    { href: '/', key: 'Find Projects', text: 'Find Projects' },
-    { href: '/', key: 'Learn Development', text: 'Learn Development' },
-    { href: '/', key: 'Career Advancement', text: 'Career Advancement' },
-    { href: '/', key: 'Hire Developers', text: 'Hire Developers' }
+    { href: '/', key: 'Learn design', text: 'Learn design' },
+    { href: '/', key: 'Go Pro', text: 'Go Pro' }
   ];
   
   export const categoryFilters = [
-    "Frontend",
-    "Backend",
-    "Full-Stack",
-    "Mobile",
+    "Discover",
+    "Animation",
     "UI/UX",
-    "Game Dev",
-    "DevOps",
-    "Data Science",
-    "Machine Learning",
-    "Cybersecurity",
-    "Blockchain",
-    "E-commerce",
-    "Chatbots"
+    "Branding",
+    "Illustration",
+    "Mobile",
+    "Print",
+    "Product Design",
+    "Typography",
+    "Web Design",
   ]
   
   export const footerLinks = [
     {
-      title: 'For developers',
+      title: 'For designers',
       links: [
         'Go Pro!',
         'Explore development work',
@@ -36,7 +33,7 @@ export const NavLinks = [
       ],
     },
     {
-      title: 'Hire developers',
+      title: 'Hire designers',
       links: [
         'Post a job opening',
         'Post a freelance project',
@@ -74,7 +71,7 @@ export const NavLinks = [
       ],
     },
     {
-      title: 'Development assets',
+      title: 'Design assets',
       links: [
         'Code Marketplace',
         'GitHub Marketplace',
@@ -83,7 +80,7 @@ export const NavLinks = [
       ],
     },
     {
-      title: 'Development Resources',
+      title: 'Design Resources',
       links: [
         'Freelancing',
         'Development Hiring',

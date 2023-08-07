@@ -23,7 +23,7 @@ const FooterColumn = ({ title, links }: ColumnProps) => (
 
 const Footer = () => (
   <section className="flexStart footer">
-    <div className="flex flex-col gap-12 w-full">
+    <div className="flex sm:flex-col xl:flex-row gap-12 w-full">
       <div className="flex items-start flex-col">
         <Image src="/logo-pink.svg" width={116} height={38} alt="logo" />
 
